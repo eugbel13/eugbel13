@@ -6,6 +6,7 @@
 - hosts: localhost
   user: parallels
   vars:
+    environment: qa
     confl_bin: atlassian-confluence-7.4.6-64x.bin
     confl_url: https://www.atlassian.com/software/downloads/binary/{{confl_bin}}
     ansible_ssh_pipelining: true
@@ -24,7 +25,7 @@
     
   - name: response.varfile
     copy:
-      src: path/response.varfile
+      src: files/{{environment}}/response.varfile
       dest: /path/response.varfile
     become: true
 
@@ -34,11 +35,11 @@
 
   - name: server.xml
     copy:
-      src: path/server.xml
+      src: files/{{environment}}/server.xml
       dest: /confluencepath/server.xml
 
   - name: confluence.cfg.xml
     copy:
-      src: path/confluence.cfg.xml
+      src: files/{{environment}}/confluence.cfg.xml
       dest: /confluencepath/confluence.cfg.xml
     become: true
