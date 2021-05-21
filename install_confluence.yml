@@ -1,0 +1,44 @@
+---
+- name: lessgooo
+
+# hosts need better defined
+
+- hosts: localhost
+  user: parallels
+  vars:
+    confl_bin: atlassian-confluence-7.4.6-64x.bin
+    confl_url: https://www.atlassian.com/software/downloads/binary/{{confl_bin}}
+    ansible_ssh_pipelining: true
+  become: true
+
+# paths need to be defined
+# src paths would be for files hosted in the repo
+# dest paths would be on the server
+
+- tasks:
+  - name: download confluence installer
+    get_url:
+      url: '{{confl_url}}'
+      dest: /path/{{confl_bin}}
+      mode: 0755
+    
+  - name: response.varfile
+    copy:
+      src: path/response.varfile
+      dest: /path/response.varfile
+    become: true
+
+  - name: install confluence
+    command: /path/{{confl_bin}} -q -varfile /path/response.varfile
+      creates=/opt/atlassian/confluence/install.reg
+
+  - name: server.xml
+    copy:
+      src: path/server.xml
+      dest: /confluencepath/server.xml
+
+  - name: confluence.cfg.xml
+    copy:
+      src: path/confluence.cfg.xml
+      dest: /confluencepath/confluence.cfg.xml
+    become: true
