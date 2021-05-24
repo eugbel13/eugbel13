@@ -29,6 +29,7 @@
       dest: /path/response.varfile
     become: true
 
+# Learn about the 'creates'
   - name: install confluence
     command: /path/{{confl_bin}} -q -varfile /path/response.varfile
       creates=/opt/atlassian/confluence/install.reg
@@ -39,10 +40,10 @@
       dest: /confluencepath/server.xml
     become: true
 
-  - name: confluence.cfg.xml
+  - name: confluence.conf
     copy:
-      src: files/{{environment}}/confluence.cfg.xml
-      dest: /confluencepath/confluence.cfg.xml
+      src: files/{{environment}}/confluence.conf
+      dest: /confluencepath/confluence.conf
     become: true
 
 # the keystore file name would changed per environment
@@ -53,3 +54,8 @@
       src: files/{{environment}}/qakb.jks
       dest: /confluencepath/qakb.jks
     become: true
+
+# next things to consider:
+# complete paths for the above
+# plugins
+# bulk upload folders, files, scripts
