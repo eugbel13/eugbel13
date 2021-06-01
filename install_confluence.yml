@@ -29,7 +29,7 @@
     
   - name: copy response.varfile
     copy:
-      src: files/{{environment}}/response.varfile
+      src: files/{{environment}}/config/response.varfile
       dest: /path/response.varfile
     become: true
 
@@ -40,13 +40,13 @@
 
   - name: copy server.xml
     copy:
-      src: files/{{environment}}/server.xml
+      src: files/{{environment}}/config/server.xml
       dest: /confluencepath/server.xml
     become: true
 
   - name: copy confluence.conf
     copy:
-      src: files/{{environment}}/confluence.conf
+      src: files/{{environment}}/config/confluence.conf
       dest: /confluencepath/confluence.conf
     become: true
 
