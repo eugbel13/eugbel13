@@ -2,22 +2,18 @@
 - name: Setting up a basic structure of Ansible tasks to install Confluence. Will be sectioned and pieced out later
   hosts: qa
 # hosts have been partially defined in hosts.yml file
-
-
 # paths need to be defined
-# src paths would be for files hosted in the repo
-# dest paths would be on the server
 
 - tasks:
   - name: download confluence installer
     get_url:
       url: "{{confl_url}}"
-      dest: "/path/{{confl_bin}}"
+      dest: /path/{{confl_bin}}
       mode: 0755
     
   - name: copy response.varfile
     copy:
-      src: "files/{{envir}}/config/response.varfile"
+      src: files/{{envir}}/config/response.varfile
       dest: /path/response.varfile
     become: true
 
@@ -28,37 +24,39 @@
 
   - name: copy server.xml
     copy:
-      src: "files/{{envir}}/config/server.xml"
+      src: files/{{envir}}/config/server.xml
       dest: /confluencepath/server.xml
     become: true
 
   - name: copy confluence.conf
     copy:
-      src: "files/{{envir}}/config/confluence.conf"
+      src: files/{{envir}}/config/confluence.conf
       dest: /confluencepath/confluence.conf
     become: true
 
   # We have custom macros and scripts that contain CSS and issue collector information that we need to consider
   - name: copy custom script files
-      copy: "files/{{envir}}/config/custom/"
+      copy: files/{{envir}}/config/custom/
       dest: /confluencepath/custom/
     become: true
 
   # The goal of this is to copy all contents of the plugins folder and add it to the bundled plugin installation of Confluence.
-  # This assumes we're keeping all of the plugins within our repo. 
+  # This assumes we're keeping all of the plugins within our repo and that we want to install them all during initial setup
   - name: install plugins
     copy:
-      src: "files/{{envir}}/plugins/"
+      src: files/{{envir}}/plugins/
       dest: /confluencepath/confluence/WEB-INF/atlassian-bundled-plugins/
     become: true
 
   # the keystore file name would changed per environment and software
   - name: keystore
     copy:
-      src: "files/{{envir}}/config/{{keystore_name}}.jks"
-      dest: "/confluencepath/{{keystore_name}}.jks"
+      src: files/{{envir}}/config/{{keystore_name}}.jks
+      dest: /confluencepath/{{keystore_name}}.jks
     become: true
 
 # next things to consider:
 # complete paths for the above
+# acquiring files
+# testing
 ...
