@@ -1,0 +1,1 @@
+Contains plugins for our Stage Confluence deployment

@@ -1,12 +1,16 @@
 ---
-- name: lessgooo
+- name: Setting up a basic structure of Ansible tasks to install Confluence. Will be sectioned and pieced out later
 
 # hosts need better defined
+# inventory in general needs to be defined better than this
+# thinking of variables to use to dynamically grab files
 
 - hosts: localhost
   user: parallels
   vars:
     environment: qa
+    software: kb
+    keystore_name: "{{environment}} + {{software}}"
     confl_bin: atlassian-confluence-7.4.6-64x.bin
     confl_url: https://www.atlassian.com/software/downloads/binary/{{confl_bin}}
     ansible_ssh_pipelining: true
@@ -23,39 +27,51 @@
       dest: /path/{{confl_bin}}
       mode: 0755
     
-  - name: response.varfile
+  - name: copy response.varfile
     copy:
       src: files/{{environment}}/response.varfile
       dest: /path/response.varfile
     become: true
 
-# Learn about the 'creates'
+  # Learn about the 'creates'
   - name: install confluence
     command: /path/{{confl_bin}} -q -varfile /path/response.varfile
       creates=/opt/atlassian/confluence/install.reg
 
-  - name: server.xml
+  - name: copy server.xml
     copy:
       src: files/{{environment}}/server.xml
       dest: /confluencepath/server.xml
     become: true
 
-  - name: confluence.conf
+  - name: copy confluence.conf
     copy:
       src: files/{{environment}}/confluence.conf
       dest: /confluencepath/confluence.conf
     become: true
 
-# the keystore file name would changed per environment
-# I'm writing this playbook in a way that we should just need to change the environment variable in the host and most would work
-# should maybe look into ways to make this easier to change
+  # We have custom macros and scripts that contain CSS and issue collector information that we need to consider
+  - name: copy custom script files
+      copy: files/{{environment}}/custom/
+      dest: /confluencepath/custom/
+    become: true
+
+  # The goal of this is to copy all contents of the plugins folder and add it to the bundled plugin installation of Confluence.
+  # This assumes we're keeping all of the plugins within our repo. 
+  - name: install plugins
+    copy:
+      src: files/{{environment}}/plugins/
+      dest: /confluencepath/confluence/WEB-INF/atlassian-bundled-plugins/
+    become: true
+
+  # the keystore file name would changed per environment and software
+  # I'm writing this playbook in a way that we should just need to change the environment and software variables in the host
   - name: keystore
     copy:
-      src: files/{{environment}}/qakb.jks
-      dest: /confluencepath/qakb.jks
+      src: files/{{environment}}/{{keystore_name}}.jks
+      dest: /confluencepath/{{keystore_name}}.jks
     become: true
 
 # next things to consider:
 # complete paths for the above
-# plugins
-# bulk upload folders, files, scripts
+# our custom scripts

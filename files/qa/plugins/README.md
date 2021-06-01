@@ -1,0 +1,1 @@
+Contains plugins for our QA Confluence deployment
