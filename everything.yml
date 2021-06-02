@@ -56,6 +56,13 @@
       dest: /var/atlassian/application-data/confluence/{{keystore_name}}.jks
     become: true
 
+ # Start confluence when we're all done
+  - name: systemctl start confluence.service
+    service:
+      name: "confluence.service"
+      state: "started"
+      enabled: true
+
 # next things to consider:
 # complete paths for the above
 # acquiring files
