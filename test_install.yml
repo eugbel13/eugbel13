@@ -11,9 +11,8 @@
 #     ansible_ssh_pipelining: true
 #   become: true
 
-# assume we already have the installer and the response.varfile
+  # assume we already have the installer and the response.varfile
   tasks:
   - name: install confluence
     command: /var/tmp/atlassian-confluence-7.4.6-x64.bin -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg
-
