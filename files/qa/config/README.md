@@ -1,1 +1,1 @@
-Config files for QA Confluence
+Contains configuration files for QA Confluence

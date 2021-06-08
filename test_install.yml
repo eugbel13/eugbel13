@@ -11,8 +11,20 @@
 #     ansible_ssh_pipelining: true
 #   become: true
 
-  # assume we already have the installer and the response.varfile
+  
   tasks:
+  - name: download confluence installer
+      get_url:
+        url: "{{confl_url}}"
+        dest: /var/tmp/{{confl_bin}}
+        mode: 0755
+
+  - name: copy response.varfile
+      copy:
+        src: files/{{envir}}/config/response.varfile
+        dest: /var/tmp/response.varfile
+      become: true
+
   - name: install confluence
-    command: /var/tmp/atlassian-confluence-7.4.6-x64.bin -q -varfile /var/tmp/response.varfile
+      command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg

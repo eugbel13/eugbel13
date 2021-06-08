@@ -1,1 +1,1 @@
-Contains config files for production Confluence
+Contains configuration files for production Confluence

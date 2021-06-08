@@ -1,1 +1,1 @@
-Config files for Stage Confluence
+Contains configuration files for stage Confluence
