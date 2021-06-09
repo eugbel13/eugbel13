@@ -22,4 +22,6 @@ Still needs to be tested:
 
 Stretch goals (not necessary for immediate success but need to be considered):
 - Plugin installation and management
-- Custom user macros
+
+More to consider:
+- How best to integrate into im-platform github
