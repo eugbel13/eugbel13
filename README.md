@@ -25,3 +25,4 @@ Stretch goals (not necessary for immediate success but need to be considered):
 
 More to consider:
 - How best to integrate into im-platform github
+- How are we expected to run these in reference to the ansible machines?
