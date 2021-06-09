@@ -26,7 +26,10 @@ Stretch goals (not necessary for immediate success but need to be considered):
 - Plugin installation and management
 	- JavaMelody?
 
-Separate
+Playbook / Roles Ideas
+- Install Confluence from scratch
+- Upgrade Confluence
+- Update Plugins
 
 More to consider:
 - Any packages need to be installed before confluence can be installed?
