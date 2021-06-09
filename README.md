@@ -15,10 +15,12 @@ Successfully tested:
 - Installing confluence using ansible's command module assuming the bin and response.varfile are already present
 
 Still needs to be tested:
-- Get URL to download installer
+- Use Get_URL module to download installer
 - Full vanilla installation: download bin, copy down response.varfile and run installer in one shot
-- Doing the full installation using variables to dynamically grab the bin and config files
-- Actual proper testing of copying down and maintaining config files
+- Running the plays from a remote machine
+- Doing the full remote installation using variables to dynamically grab the bin and config files
+-- Still need to create confluence.conf
+- Actual proper testing of copying down and maintaining config files in QA+
 
 Stretch goals (not necessary for immediate success but need to be considered):
 - Plugin installation and management
@@ -26,3 +28,4 @@ Stretch goals (not necessary for immediate success but need to be considered):
 More to consider:
 - How best to integrate into im-platform github
 - How are we expected to run these in reference to the ansible machines?
+-- Do we need to use the service account usernames / passwords in our plays? How?
