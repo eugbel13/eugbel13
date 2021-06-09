@@ -12,7 +12,7 @@
 #   become: true
 
   
-  # tasks:
+  tasks:
   # - name: download confluence installer
   #     get_url:
   #       url: "{{confl_url}}"
