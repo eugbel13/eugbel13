@@ -31,7 +31,18 @@
       dest: /opt/atlassian/confluence/conf/server.xml
     become: true
 
-  # Add the config file that defines the DB info
+  # Defines JDNI database connection
+  - name: copy web.xml
+    copy:
+      src: files/{{envir}}/config/web.xml
+      dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
+    become: true
+
+  # Add the config file that defines the DB info. 
+  # This is only necessary on the first deployment. The application will manage the file after it has been installed.
+  # We need to think about the best way to manage this file. When the application updates versions, this file will change.
+  # If we do not keep an updated version in our repo, standing up a machine from scratch might have the incorrect build number
+  # Can ansible push up the new config version to github after an update?
   - name: copy confluence.cfg.xml
     copy:
       src: files/{{envir}}/config/confluence.cfg.xml
@@ -41,7 +52,7 @@
   # Add the config file so Confluence boots on startup
   - name: copy confluence.conf
     copy:
-      src: files/{{envir}}/config/confluence.conf
+      src: files/confluence.conf
       dest: /etc/init/confluence.conf
     become: true
 
