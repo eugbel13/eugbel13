@@ -19,7 +19,7 @@ Still needs to be tested:
 - Full vanilla installation: download bin, copy down response.varfile and run installer in one shot
 - Running the plays from a remote machine
 - Doing the full remote installation using variables to dynamically grab the bin and config files
--- Still need to create confluence.conf
+	- Still need to create confluence.conf
 - Actual proper testing of copying down and maintaining config files in QA+
 
 Stretch goals (not necessary for immediate success but need to be considered):
