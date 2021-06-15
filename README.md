@@ -13,10 +13,10 @@ To do:
 
 Successfully tested:
 - Installing confluence using ansible's command module assuming the bin and response.varfile are already present
-
-Still needs to be tested:
 - Use Get_URL module to download installer
 - Full vanilla installation: download bin, copy down response.varfile and run installer in one shot
+
+Still needs to be tested:
 - Running the plays from a remote machine
 - Doing the full remote installation using variables to dynamically grab the bin and config files
 	- Still need to create confluence.conf
