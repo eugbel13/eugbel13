@@ -1,6 +1,9 @@
 ---
 - name: This is my testing playbook
   hosts: localhost
+  vars:
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
 # - hosts: localhost
 #   user: parallels
@@ -15,8 +18,8 @@
   tasks:
   - name: download confluence installer
     get_url:
-      url: "https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-7.4.6-x64.bin"
-      dest: /var/tmp/atlassian-confluence-7.4.6-x64.bin
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
   - name: copy response.varfile
@@ -26,5 +29,5 @@
     become: true
 
   - name: install confluence
-    command: /var/tmp/atlassian-confluence-7.4.6-x64.bin -q -varfile /var/tmp/response.varfile
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg
