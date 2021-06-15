@@ -27,4 +27,4 @@
 
   - name: install confluence
       command: /var/tmp/atlassian-confluence-7.4.6-x64.bin -q -varfile /var/tmp/response.varfile
-      creates=/opt/atlassian/confluence/install.reg
+        creates=/opt/atlassian/confluence/install.reg
