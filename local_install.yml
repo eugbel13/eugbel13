@@ -1,0 +1,73 @@
+---
+- name: Set up QA Confluence (no plugins or custom files)
+  hosts: localhost
+  vars:
+    envir: qa
+    software: kb
+    keystore_name: "{{envir}} + {{software}}"
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
+
+
+tasks:
+  # Grab the bin file from the web, version is defined by "confl_bin" variable set above
+  - name: download confluence installer
+    get_url:
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
+      mode: 0755
+
+  # Pull down variable file, used during installation
+  - name: copy response.varfile
+    copy:
+      src: files/response.varfile
+      dest: /var/tmp/response.varfile
+    become: true
+
+  # Install the service quietly using the variable file we just pulled down
+  - name: install confluence
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+      creates=/opt/atlassian/confluence/install.reg
+
+  # Add server config file for HTTPS connector info
+  - name: copy server.xml
+    copy:
+      src: files/{{envir}}/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
+    become: true
+
+  # Defines JDNI database connection
+  - name: copy web.xml
+    copy:
+      src: files/{{envir}}/config/web.xml
+      dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
+    become: true
+  
+  # Add the config file that defines the DB info. 
+  # This is only necessary on the first deployment. The application will manage the file after it has been installed.
+  - name: copy confluence.cfg.xml
+    copy:
+      src: files/{{envir}}/config/confluence.cfg.xml
+      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
+    become: true
+  
+  # Add the config file so Confluence boots on startup
+  - name: copy confluence.conf
+    copy:
+      src: files/confluence.conf
+      dest: /etc/init/confluence.conf
+    become: true
+
+  # Grab the .jks keystore file used in the server.xml HTTPS connector configuration
+  - name: keystore
+    copy:
+      src: files/{{envir}}/config/{{keystore_name}}.jks
+      dest: /var/atlassian/application-data/confluence/{{keystore_name}}.jks
+    become: true
+  
+  # Start confluence when we're all done
+  - name: systemctl start confluence.service
+    service:
+      name: "confluence.service"
+      state: "started"
+      enabled: true
