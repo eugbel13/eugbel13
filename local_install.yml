@@ -1,5 +1,6 @@
 ---
-- name: Set up QA Confluence (no plugins or custom files)
+# This playbook configures Confluence locally. Change variables to define the environment and the version to be installed.
+- name: Set up Confluence locally (no plugins or custom files)
   hosts: localhost
   vars:
     envir: qa
