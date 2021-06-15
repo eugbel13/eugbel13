@@ -1,6 +1,5 @@
 ---
 - name: This is my testing playbook
-  hosts: txd2-confluence.extendhealth.com
   vars:
     confl_bin: atlassian-confluence-7.4.6-x64.bin
     confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
