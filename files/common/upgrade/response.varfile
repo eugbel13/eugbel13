@@ -1,0 +1,10 @@
+# install4j response file for Confluence 7.4.6
+app.confHome=/var/atlassian/application-data/confluence
+app.install.service$Boolean=true
+existingInstallationDir=/opt/Confluence
+launch.application$Boolean=false
+portChoice=default
+sys.adminRights$Boolean=true
+sys.confirmedUpdateInstallationString=true
+sys.installationDir=/opt/atlassian/confluence
+sys.languageId=en
