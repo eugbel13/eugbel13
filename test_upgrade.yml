@@ -2,7 +2,7 @@
 - name: This is my testing playbook
   hosts: localhost
   vars:
-    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_bin: atlassian-confluence-7.5.0-x64.bin
     confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   
@@ -15,12 +15,12 @@
 
   - name: copy response.varfile
     copy:
-      src: files/common/full/response.varfile
+      src: files/common/upgrade/response.varfile
       dest: /var/tmp/response.varfile
     become: true
 
   - name: install confluence
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
-      creates=/opt/atlassian/confluence/install.reg
+      
 
 ...
