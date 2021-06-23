@@ -1,6 +1,7 @@
 ---
 - name: This is my testing playbook
   hosts: txd3-confluence
+  user: "{{db_user}}"
 
   
   tasks:
