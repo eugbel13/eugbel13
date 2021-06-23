@@ -7,19 +7,31 @@
 
   
   tasks:
+  - name: systemctl stop confluence.service
+    service:
+      name: "confluence.service"
+      state: "stopped"
+      enabled: true
+  
   - name: download confluence installer
     get_url:
       url: "{{confl_url}}"
       dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
-  - name: copy response.varfile
+  - name: copy upgrade response.varfile
     copy:
       src: files/common/upgrade/response.varfile
       dest: /var/tmp/response.varfile
     become: true
 
-  - name: install confluence
+  - name: upgrade confluence
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+
+  - name: systemctl start confluence.service
+    service:
+      name: "confluence.service"
+      state: "started"
+      enabled: true
       
 ...

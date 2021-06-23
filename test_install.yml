@@ -1,9 +1,6 @@
 ---
 - name: This is my testing playbook
-  hosts: localhost
-  vars:
-    confl_bin: atlassian-confluence-7.4.6-x64.bin
-    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
+  hosts: txd3-confluence
 
   
   tasks:
@@ -13,7 +10,7 @@
       dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
-  - name: copy response.varfile
+  - name: copy install response.varfile
     copy:
       src: files/common/full/response.varfile
       dest: /var/tmp/response.varfile

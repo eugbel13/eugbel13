@@ -11,10 +11,14 @@ To do:
 
 `test_install.yml` is a test playbook for testing specific steps of the process. Currently tasks are copied from `everything.yml` with less dynamicism. Written to run on a localhost
 
+`test_upgrade.yml` is a test playbook for specifically testing an upgrade of an installed Confluence instance
+
 Successfully tested:
 - Installing confluence using ansible's command module assuming the bin and response.varfile are already present
 - Use Get_URL module to download installer
 - Full vanilla installation: download bin, copy down response.varfile and run installer in one shot
+- Upgrading a preexisting installation of Confluence
+	- The instance needs to be started and properly setup before the upgrade can process successfully.
 
 Still needs to be tested:
 - Running the plays from a remote machine
