@@ -21,7 +21,5 @@
 
   - name: install confluence
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
-      creates=/opt/atlassian/confluence/install.reg
       
-
 ...
