@@ -1,0 +1,58 @@
+---
+- name: Upgrade Confluence
+  hosts: localhost
+  vars:
+    envir: qa
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
+
+
+  tasks:
+  # take a backup of Confluence's home directory in case the upgrade is not successful
+  - name: backup Confluence home directory
+    copy:
+      src: /opt/atlassian/confluence/
+      dest: /var/tmp/kb_backup/
+    become: true
+
+  # Grab the bin file from the web, version is defined by "confl_bin" variable set above
+  - name: download confluence installer
+    get_url:
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
+      mode: 0755
+
+  # Pull down variable file, used during installation. 
+  # This needs to be tested to ensure it will upgrade instead of installing a second instance.
+  - name: copy response.varfile
+    copy:
+      src: files/common/upgrade/response.varfile
+      dest: /var/tmp/response.varfile
+    become: true
+
+  # Install the service quietly using the variable file we just pulled down
+  - name: upgrade confluence
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+      creates=/opt/atlassian/confluence/install.reg
+
+  # Add server config file for HTTPS connector info
+  - name: copy server.xml
+    copy:
+      src: files/{{envir}}/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
+    become: true
+
+  # Defines JDNI database connection
+  - name: copy web.xml
+    copy:
+      src: files/{{envir}}/config/web.xml
+      dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
+    become: true
+
+  # Start confluence when we're all done
+  - name: systemctl start confluence.service
+    service:
+      name: "confluence.service"
+      state: "started"
+      enabled: true
+...
