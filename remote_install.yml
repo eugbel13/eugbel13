@@ -1,0 +1,28 @@
+---
+- name: confluence playbook
+  hosts: dev
+  remote_user: confluence
+  become: true
+  vars:
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
+
+  tasks:
+  # Grab the bin file from the web, version is defined by "confl_bin" variable set above
+  - name: download confluence installer
+    get_url:
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
+      mode: 0755
+
+  # Pull down variable file, used during installation
+  - name: copy response.varfile
+    copy:
+      src: files/common/full/response.varfile
+      dest: /var/tmp/response.varfile
+    become: true
+
+  # Install the service quietly using the variable file we just pulled down
+  - name: install confluence
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+      creates=/opt/atlassian/confluence/install.reg
