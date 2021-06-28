@@ -1,7 +1,7 @@
 ---
 - name: This is my testing playbook
   hosts: txd3-confluence.extendhealth.com
-  # user: "{{db_user}}"
+  user: svc-ansible-prod
 
   
   tasks:
