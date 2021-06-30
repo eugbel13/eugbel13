@@ -26,7 +26,7 @@
   # This needs to be tested to ensure it will upgrade instead of installing a second instance.
   - name: copy response.varfile
     copy:
-      src: files/common/upgrade/response.varfile
+      src: ../files/common/upgrade/response.varfile
       dest: /var/tmp/response.varfile
     become: true
 
@@ -38,14 +38,14 @@
   # Add server config file for HTTPS connector info
   - name: copy server.xml
     copy:
-      src: files/{{envir}}/config/server.xml
+      src: ../files/{{envir}}/config/server.xml
       dest: /opt/atlassian/confluence/conf/server.xml
     become: true
 
   # Defines JDNI database connection
   - name: copy web.xml
     copy:
-      src: files/{{envir}}/config/web.xml
+      src: ../files/{{envir}}/config/web.xml
       dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
     become: true
 

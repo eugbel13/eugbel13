@@ -2,7 +2,7 @@
 - name: This is my testing playbook
   hosts: txd3-confluence.extendhealth.com
   become: true
-  become_user: {{ service_owner }}
+  become_user: {{ vip_user }}
 
   
   tasks:
@@ -14,7 +14,7 @@
 
   - name: copy install response.varfile
     copy:
-      src: files/common/full/response.varfile
+      src: ../files/common/full/response.varfile
       dest: /var/tmp/response.varfile
     become: true
 
