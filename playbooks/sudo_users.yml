@@ -1,0 +1,53 @@
+---
+- hosts: all
+  become: True
+
+# Need to determine the purpose of this and if it is necessary.
+  vars_prompt:
+
+    - name: ansible_user
+      prompt: "Enter ansible user which has sudo access"
+      private: no
+
+    - name: ansible_ssh_pass
+      prompt: "Enter password for ansible user"
+      private: yes
+      confirm: yes
+    
+    - name: ansible_sudo_pass
+      prompt: "Enter sudo password for user"
+      private: yes
+      confirm: yes
+
+  # I currently don't understand where the 'username' variable is used or why it is necessary
+  # We'll overwrite the script that Red Team uses unless we get excluded. 
+  # Conversely, that means if Red Team run their version against our machines they will overwrite what we have here.
+  vars:
+    username: svc-ansible-prod
+    sudo_username: |
+      svc-ansible-prod ALL=(ALL) NOPASSWD: ALL
+      confluence ALL=(ALL) NOPASSWD: ALL
+    sudo_content: |
+      %admin@extendhealth.com   ALL=(ALL) ALL
+      %server\ administrators\ all@extendhealth.com   ALL=(ALL) ALL
+      %devops\ engineer\ role@extendhealth.com   ALL=(ALL) ALL
+      %site\ reliability\ engineering\ role@extendhealth.com   ALL=(ALL) ALL
+  tasks:
+  - name: Add sudo users
+    copy:
+      dest: /etc/sudoers.d/91_ansible
+      content: "{{ sudo_username }}"
+  
+  - name: Add sudo groups
+    copy:
+     dest: /etc/sudoers.d/90_domain
+     content: "{{ sudo_content }}"
+
+# Change the link once we have something to replace it with
+  - name: Add SSH key for confluence.
+    authorized_key:
+      user: "confluence"
+      state: present
+      key: https://github.com/im-platform/awx-ansible/files/ansible.keys
+
+...
