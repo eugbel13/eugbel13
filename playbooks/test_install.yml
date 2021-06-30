@@ -1,8 +1,7 @@
 ---
-- name: This is my testing playbook
+- name: Attempting a vanilla installation of Confluence
   hosts: txd3-confluence.extendhealth.com
   become: true
-  become_user: {{ vip_user }}
 
   
   tasks:

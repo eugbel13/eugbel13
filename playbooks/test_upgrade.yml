@@ -1,5 +1,5 @@
 ---
-- name: This is my testing playbook
+- name: Attempting an upgrade of local Confluence installation
   hosts: localhost
   vars:
     confl_bin: atlassian-confluence-7.5.0-x64.bin
@@ -7,11 +7,10 @@
 
   
   tasks:
-  - name: systemctl stop confluence.service
+  - name: stop confluence service
     service:
       name: "confluence.service"
       state: "stopped"
-      enabled: true
   
   - name: download confluence installer
     get_url:
@@ -28,7 +27,7 @@
   - name: upgrade confluence
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
 
-  - name: systemctl start confluence.service
+  - name: start & enable confluence service
     service:
       name: "confluence.service"
       state: "started"
