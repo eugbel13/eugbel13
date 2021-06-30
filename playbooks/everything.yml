@@ -12,10 +12,10 @@
       dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
-  # Pull down variable file, used during installation
+  # Pull down variable file, used during installation. Path differs between installations and upgrades
   - name: copy response.varfile
     copy:
-      src: ../files/{{envir}}/config/response.varfile
+      src: ../files/common/full/response.varfile
       dest: /var/tmp/response.varfile
     become: true
 
