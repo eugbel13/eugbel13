@@ -21,7 +21,7 @@ Stretch goals (not necessary for immediate success but need to be considered for
 - Monitoring
 
 New Playbook / Roles Ideas
-- Create 
+- Create confluence user
 - Update Plugins
 
 More to consider:
