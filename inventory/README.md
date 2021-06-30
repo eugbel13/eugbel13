@@ -1,0 +1,1 @@
+Contains inventory files for use with managing Confluence
