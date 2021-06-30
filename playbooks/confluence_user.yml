@@ -1,0 +1,17 @@
+---
+- name: ensure confluence user exists and has sudo
+  hosts: dev
+
+  tasks:
+  - name: e x i s t
+    ansible.builtin.user:
+      name: confluence
+      state: present
+
+  - name: a c c e s s
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      state: present
+      line: 'confluence ALL=(ALL) NOPASSWD: ALL'
+
+...
