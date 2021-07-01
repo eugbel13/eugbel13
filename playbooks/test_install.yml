@@ -32,6 +32,7 @@
       path: /etc/sudoers
       state: present
       line: 'confluence ALL=(ALL) NOPASSWD: ALL'
+    become: true
   
   - name: ensure fontconfig is installed
     yum:
@@ -54,11 +55,12 @@
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg
     become: true
+    remote_user: confluence
 
   - name: start confluence
     command: /opt/atlassian/confluence/bin/start-confluence.sh
     become: true
-    remote_user: confluence
+    # remote_user: confluence
 
   
 
