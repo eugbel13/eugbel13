@@ -2,9 +2,6 @@
 - name: Attempting a vanilla installation of Confluence
   hosts: txd3-confluence.extendhealth.com
   become: true
-  vars:
-    installer: "{{confl_bin}}"
-    installer_location: "{{confl_url}}"
 
   vars_prompt:
     - name: ansible_user
@@ -33,10 +30,13 @@
       state: present
       line: 'confluence ALL=(ALL) NOPASSWD: ALL'
 
+  - name: echo the installer URL
+    command: echo {{confl_url}}
+
   - name: download confluence installer
     get_url:
-      url: "{{installer_location}}"
-      dest: /var/tmp/{{installer}}
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
   - name: copy install response.varfile
