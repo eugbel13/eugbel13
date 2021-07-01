@@ -2,9 +2,6 @@
 - name: Attempting a vanilla installation of Confluence
   hosts: txd3-confluence.extendhealth.com
   become: true
-  vars:
-    confl_bin: atlassian-confluence-7.4.6-x64.bin
-    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   vars_prompt:
     - name: ansible_user
