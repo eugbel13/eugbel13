@@ -54,6 +54,6 @@
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg
     become: true
-    become_user: confluence
+    remote_user: confluence
 
 ...
