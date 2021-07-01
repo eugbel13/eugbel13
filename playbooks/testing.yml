@@ -1,9 +1,7 @@
 ---
 - name: This is a quick test playbook. I use it to quickly test modules where necessary
-  hosts: txd3-confluence.extendhealth.com
+  hosts: txd1-confluence.extendhealth.com
   become: true
-  #vars:
-    #confl_bin: atlassian-confluence-7.4.6-x64.bin
 
   vars_prompt:
     - name: ansible_user
