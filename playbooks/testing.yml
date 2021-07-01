@@ -13,19 +13,17 @@
     - name: ansible_ssh_pass
       prompt: "Enter password for ansible user"
       private: yes
-      confirm: yes
     
     - name: ansible_sudo_pass
       prompt: "Enter sudo password for user"
       private: yes
-      confirm: yes
   
 
   tasks:
   - name: download confluence installer
     get_url:
       url: "{{confl_url}}"
-      dest: "/var/tmp/{{confl_bin}}"
+      dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
 ...
