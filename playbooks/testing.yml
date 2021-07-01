@@ -4,7 +4,6 @@
   become: true
   vars:
     confl_bin: atlassian-confluence-7.4.6-x64.bin
-    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   vars_prompt:
     - name: ansible_user
