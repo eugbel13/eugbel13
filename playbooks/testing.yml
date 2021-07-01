@@ -1,6 +1,6 @@
 ---
 - name: This is a quick test playbook. I use it to quickly test modules where necessary
-  hosts: txd3-confluence
+  hosts: txd3-confluence.extendhealth.com
 
   tasks:
   - name: download confluence installer
