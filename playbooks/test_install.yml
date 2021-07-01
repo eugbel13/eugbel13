@@ -2,6 +2,9 @@
 - name: Attempting a vanilla installation of Confluence
   hosts: txd3-confluence.extendhealth.com
   become: true
+  vars:
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   vars_prompt:
     - name: ansible_user
@@ -29,6 +32,11 @@
       path: /etc/sudoers
       state: present
       line: 'confluence ALL=(ALL) NOPASSWD: ALL'
+
+  - name: ensure fontconfig is installed
+    yum:
+      name: fontconfig
+      state: latest
 
   - name: download confluence installer
     get_url:
