@@ -1,0 +1,12 @@
+---
+- name: This is a quick test playbook. I use it to quickly test modules where necessary
+  hosts: txd3-confluence
+
+  tasks:
+  - name: download confluence installer
+    get_url:
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
+      mode: 0755
+
+...
