@@ -3,6 +3,21 @@
   hosts: txd3-confluence.extendhealth.com
   become: true
 
+  vars_prompt:
+
+    - name: ansible_user
+      prompt: "Enter ansible user which has sudo access"
+      private: no
+
+    - name: ansible_ssh_pass
+      prompt: "Enter password for ansible user"
+      private: yes
+      confirm: yes
+    
+    - name: ansible_sudo_pass
+      prompt: "Enter sudo password for user"
+      private: yes
+      confirm: yes
   
   tasks:
   - name: e x i s t
