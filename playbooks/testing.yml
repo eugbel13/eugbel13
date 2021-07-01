@@ -1,6 +1,6 @@
 ---
 - name: This is a quick test playbook. I use it to quickly test modules where necessary
-  hosts: dev
+  hosts: txd3-confluence.extendhealth.com
   become: true
   #vars:
     #confl_bin: atlassian-confluence-7.4.6-x64.bin
@@ -25,7 +25,7 @@
   - name: download confluence installer
     get_url:
       url: "{{confl_url}}"
-      dest: /var/tmp/{{confl_bin}}
+      dest: "/var/tmp/{{confl_bin}}"
       mode: 0755
 
 ...
