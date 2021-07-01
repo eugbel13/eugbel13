@@ -22,10 +22,10 @@
       confirm: yes
   
   tasks:
-  # - name: e x i s t
-  #   ansible.builtin.user:
-  #     name: confluence
-  #     state: present
+  - name: e x i s t
+    ansible.builtin.user:
+      name: confluence
+      state: present
 
   - name: a c c e s s
     ansible.builtin.lineinfile:
@@ -54,6 +54,11 @@
     command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
       creates=/opt/atlassian/confluence/install.reg
     become: true
+
+  - name: start confluence
+    command: /opt/atlassian/confluence/bin/start-confluence.sh
+    become: true
+    remote_user: confluence
 
   
 
