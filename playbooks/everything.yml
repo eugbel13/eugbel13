@@ -13,15 +13,15 @@
       mode: 0755
 
   # Pull down variable file, used during installation. Path differs between installations and upgrades
-  - name: copy response.varfile
+  - name: copy install.varfile
     copy:
-      src: ../files/common/full/response.varfile
+      src: ../files/common/install.varfile
       dest: /var/tmp/response.varfile
     become: true
 
   # Install the service quietly using the variable file we just pulled down
   - name: install confluence
-    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/install.varfile
       creates=/opt/atlassian/confluence/install.reg
 
   # Add server config file for HTTPS connector info
@@ -52,7 +52,7 @@
   # Add the config file so Confluence boots on startup
   - name: copy confluence.conf
     copy:
-      src: ../files/confluence.conf
+      src: ../files/common/confluence.conf
       dest: /etc/init/confluence.conf
     become: true
 
