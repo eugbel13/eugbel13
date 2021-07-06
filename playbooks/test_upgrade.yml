@@ -18,14 +18,14 @@
       dest: /var/tmp/{{confl_bin}}
       mode: 0755
 
-  - name: copy upgrade response.varfile
+  - name: copy upgrade.varfile
     copy:
-      src: ../files/common/upgrade/response.varfile
+      src: ../files/common/upgrade.varfile
       dest: /var/tmp/response.varfile
     become: true
 
   - name: upgrade confluence
-    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/response.varfile
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/upgrade.varfile
 
   - name: start & enable confluence service
     service:
