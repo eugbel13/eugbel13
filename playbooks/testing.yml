@@ -22,7 +22,9 @@
   tasks:
   - name: literally just checking syntax
     ansible.posix.firewalld:
-      state: present
+      port: 8090/tcp
+      permanent: yes
+      state: enabled
     
 
 
