@@ -1,6 +1,6 @@
 ---
 - name: Attempting a vanilla installation of Confluence
-  hosts: txd1-confluence.extendhealth.com
+  hosts: txd4-confluence.extendhealth.com
   #remote_user: svc-ansible-prod
   become: true
   vars:
