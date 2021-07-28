@@ -65,9 +65,18 @@
       recurse: yes
       owner: svc-wjv-QACNFL
 
+  # Opening the port on the linux box so we can connect after it starts
+  - name: permit traffic in default zone on port 8081/tcp
+    ansible.posix.firewalld:
+      port: 8090/tcp
+      permanent: yes
+      state: enabled
+
   - name: start confluence
-    command: /opt/atlassian/confluence/bin/start-confluence.sh
-    become: true
+    service:
+      name: "confluence.service"
+      state: "started"
+      enabled: true
 
   
 

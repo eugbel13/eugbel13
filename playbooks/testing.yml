@@ -18,9 +18,11 @@
   
 
   tasks:
-  - name: start confluence
-    command: /opt/atlassian/confluence/bin/start-confluence.sh
-    become: true
-    become_user: confluence
+  - name: permit traffic in default zone on port 8081/tcp
+    ansible.posix.firewalld:
+      port: 8090/tcp
+      permanent: yes
+      state: enabled
+
 
 ...
