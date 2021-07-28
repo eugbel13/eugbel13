@@ -51,6 +51,20 @@
       src: ../files/qa/config/user.sh
       dest: /opt/atlassian/confluence/bin/user.sh
 
+  - name: set home directory permissions
+    file: 
+      path: /opt/atlassian/confluence/
+      state: directory
+      recurse: yes
+      owner: svc-wjv-QACNFL
+  
+  - name: set installation directory permissions
+    file: 
+      path: /var/atlassian/application-data/confluence/
+      state: directory
+      recurse: yes
+      owner: svc-wjv-QACNFL
+
   - name: start confluence
     command: /opt/atlassian/confluence/bin/start-confluence.sh
     become: true
