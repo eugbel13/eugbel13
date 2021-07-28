@@ -21,7 +21,7 @@
 
   tasks:
   - name: literally just checking syntax
-    firewalld:
+    ansible.posix.firewalld:
       state: present
     
 
