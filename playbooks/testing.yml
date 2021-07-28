@@ -3,9 +3,6 @@
   hosts: txd1-confluence.extendhealth.com
   collections:
   - ansible.posix
-  tasks:
-  - firewalld:
-      state: present
   become: true
 
   vars_prompt:
