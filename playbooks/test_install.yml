@@ -37,7 +37,7 @@
   - name: copy install.varfile
     copy:
       src: ../files/common/install.varfile
-      dest: /var/tmp/response.varfile
+      dest: /var/tmp/install.varfile
     become: true
 
   - name: install confluence
