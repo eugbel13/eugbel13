@@ -21,7 +21,8 @@
 
   tasks:
   - name: literally just checking syntax
-    command: echo words
+    firewalld:
+      state: present
     
 
 
