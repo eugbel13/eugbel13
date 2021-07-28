@@ -19,12 +19,10 @@
       private: yes
   
 
-  # tasks:
-  # - name: permit traffic in default zone on port 8081/tcp
-  #   firewalld:
-  #     port: 8090/tcp
-  #     permanent: yes
-  #     state: enabled
+  tasks:
+  - name: literally just checking syntax
+    command: echo words
+    
 
 
 ...
