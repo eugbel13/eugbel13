@@ -25,6 +25,11 @@
       port: 8090/tcp
       permanent: yes
       state: enabled
+      
+  - name: reload firewalld
+    service:
+      name: firewalld
+      state: restarted
     
 
 
