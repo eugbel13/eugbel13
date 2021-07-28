@@ -1,11 +1,11 @@
 ---
 - name: This is a quick test playbook. I use it to quickly test modules where necessary
   hosts: txd1-confluence.extendhealth.com
-  # tasks:
-  #   - ansible.posix.firewalld:
-  #       port: 8090/tcp
-  #       permanent: yes
-  #       state: enabled
+  collections:
+  - ansible.posix
+  tasks:
+  - firewalld:
+      state: present
   become: true
 
   vars_prompt:
@@ -22,12 +22,12 @@
       private: yes
   
 
-  tasks:
-  - name: permit traffic in default zone on port 8081/tcp
-    firewalld:
-      port: 8090/tcp
-      permanent: yes
-      state: enabled
+  # tasks:
+  # - name: permit traffic in default zone on port 8081/tcp
+  #   firewalld:
+  #     port: 8090/tcp
+  #     permanent: yes
+  #     state: enabled
 
 
 ...
