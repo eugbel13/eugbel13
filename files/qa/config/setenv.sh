@@ -79,7 +79,7 @@ CATALINA_OPTS="${START_CONFLUENCE_JAVA_OPTS} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.context.path=${CONFLUENCE_CONTEXT_PATH} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djdk.tls.server.protocols=TLSv1.1,TLSv1.2 -Djdk.tls.client.protocols=TLSv1.1,TLSv1.2 ${CATALINA_OPTS}"
 CATALINA_OPTS="-XX:ReservedCodeCacheSize=256m -XX:+UseCodeCacheFlushing ${CATALINA_OPTS}"
-CATALINA_OPTS="java.library.path=/lib/"
+CATALINA_OPTS="java.library.path=/lib/ ${CATALINA_OPTS}"
 
 
 export CATALINA_OPTS
