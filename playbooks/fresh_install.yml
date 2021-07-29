@@ -6,7 +6,7 @@
   collections:
   - ansible.posix
   vars:
-    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_bin: atlassian-confluence-7.10.2-x64.bin
     confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   vars_prompt:
@@ -17,12 +17,10 @@
     - name: ansible_ssh_pass
       prompt: "Enter password for ansible user"
       private: yes
-      confirm: yes
     
     - name: ansible_sudo_pass
       prompt: "Enter sudo password for user"
       private: yes
-      confirm: yes
   
   tasks:
   - name: ensure fontconfig is installed
