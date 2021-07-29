@@ -80,7 +80,7 @@
   - name: copy sqljdbc_auth.dll
     copy:
       src: ../files/qa/config/sqljdbc_auth.dll
-      dest: /opt/atlassian/confluence/confluence/WEB-INF/lib/sqljdbc_auth.dll
+      dest: /lib/sqljdbc_auth.dll
     become: true
 
   - name: set home directory permissions
