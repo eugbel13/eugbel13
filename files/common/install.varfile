@@ -1,9 +1,11 @@
 # install4j response file for Confluence 7.4.6
 app.confHome=/var/atlassian/application-data/confluence
 app.install.service$Boolean=true
-existingInstallationDir=/opt/atlassian/confluence
+existingInstallationDir=/opt/Confluence
+httpPort$Long=8081
 launch.application$Boolean=false
-portChoice=default
+portChoice=custom
+rmiPort$Long=8000
 sys.adminRights$Boolean=true
 sys.confirmedUpdateInstallationString=false
 sys.installationDir=/opt/atlassian/confluence

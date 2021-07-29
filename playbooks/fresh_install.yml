@@ -1,0 +1,103 @@
+---
+- name: Attempting an installation of QA Confluence
+  hosts: txd3-confluence.extendhealth.com
+  #remote_user: svc-ansible-prod
+  become: true
+  collections:
+  - ansible.posix
+  vars:
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
+    confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
+
+  vars_prompt:
+    - name: ansible_user
+      prompt: "Enter ansible user which has sudo access"
+      private: no
+
+    - name: ansible_ssh_pass
+      prompt: "Enter password for ansible user"
+      private: yes
+      confirm: yes
+    
+    - name: ansible_sudo_pass
+      prompt: "Enter sudo password for user"
+      private: yes
+      confirm: yes
+  
+  tasks:
+  - name: ensure fontconfig is installed
+    yum:
+      name: fontconfig
+      state: latest
+
+  - name: download confluence installer
+    get_url:
+      url: "{{confl_url}}"
+      dest: /var/tmp/{{confl_bin}}
+      mode: 0755
+
+  - name: copy install.varfile
+    copy:
+      src: ../files/common/install.varfile
+      dest: /var/tmp/install.varfile
+    become: true
+
+  - name: install confluence
+    command: /var/tmp/{{confl_bin}} -q -varfile /var/tmp/install.varfile
+      creates=/opt/atlassian/confluence/install.reg
+    become: true
+
+  - name: copy user.sh
+    copy:
+      src: ../files/qa/config/user.sh
+      dest: /opt/atlassian/confluence/bin/user.sh
+    become: true
+
+  - name: copy server.xml
+    copy:
+      src: ../files/qa/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
+    become: true
+
+  - name: copy web.xml
+    copy:
+      src: ../files/qa/config/web.xml
+      dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
+    become: true
+
+  - name: copy confluence.cfg.xml
+    copy:
+      src: ../files/qa/config/confluence.cfg.xml
+      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
+    become: true
+
+  - name: set home directory permissions
+    file: 
+      path: /opt/atlassian/confluence/
+      state: directory
+      recurse: yes
+      owner: svc-wjv-QACNFL
+  
+  - name: set installation directory permissions
+    file: 
+      path: /var/atlassian/application-data/confluence/
+      state: directory
+      recurse: yes
+      owner: svc-wjv-QACNFL
+
+  - name: permit traffic in default zone on port 8081/tcp for http connections
+    ansible.posix.firewalld:
+      port: 8081/tcp
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 1433/tcp for the database connection
+    ansible.posix.firewalld:
+      port: 1433/tcp
+      permanent: yes
+      state: enabled
+
+  - name: reload firewalld
+    service:
+      name: firewalld
+      state: restarted
