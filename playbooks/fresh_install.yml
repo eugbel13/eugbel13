@@ -71,6 +71,18 @@
       dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
     become: true
 
+  - name: copy setenv.sh
+    copy:
+      src: ../files/qa/config/setenv.sh
+      dest: /opt/atlassian/confluence/bin/setenv.sh
+    become: true
+
+  - name: copy sqljdbc_auth.dll
+    copy:
+      src: ../files/qa/config/sqljdbc_auth.dll
+      dest: /opt/atlassian/confluence/confluence/WEB-INF/lib/sqljdbc_auth.dll
+    become: true
+
   - name: set home directory permissions
     file: 
       path: /opt/atlassian/confluence/
