@@ -1,0 +1,94 @@
+---
+- name: This is a quick test playbook. I use it to quickly test modules where necessary
+  hosts: txd1-confluence.extendhealth.com
+  collections:
+  - ansible.posix
+  become: true
+
+  vars_prompt:
+    - name: ansible_user
+      prompt: "Enter ansible user which has sudo access"
+      private: no
+
+    - name: ansible_ssh_pass
+      prompt: "Enter password for ansible user"
+      private: yes
+    
+    - name: ansible_sudo_pass
+      prompt: "Enter sudo password for user"
+      private: yes
+  
+
+  tasks:
+  - name: installing kerberos packages
+    yum:
+      name: 
+        - krb5-server 
+        - krb5-workstation
+      state: present
+
+  - name: copy krb5.conf file
+    copy:
+      src: ../files/qa/config/krb5.conf
+      dest: /etc/krb5.conf
+    become: true
+
+  - name: copy kdc.conf file
+    copy:
+      src: ../files/qa/config/kdc.conf
+      dest: /var/kerberos/krb5kdc/kdc.conf
+    become: true
+
+  - name: create kerberos database
+    command: kdb5_util create -s
+    # We need to input the argument for the password somehow
+
+  - name: start & enable 'kadmin'
+    service:
+      name: kadmin
+      enabled: yes
+      state: started
+
+  - name: start & enable 'krb5kdc'
+    service:
+      name: krb5kdc
+      enabled: yes
+      state: started
+
+  - name: make sure kerberos service is added to firewalld
+    ansible.posix.firewalld:
+      service: kerberos
+      permanent: yes
+      state: enabled
+
+  - name: opening kerberos port (TCP)
+    ansible.posix.firewalld:
+      port: 88/tcp
+      permanent: yes
+      state: enabled
+
+  - name: opening kerberos port (UDP)
+    ansible.posix.firewalld:
+      port: 88/udp
+      permanent: yes
+      state: enabled
+  
+  - name: opening kadmin port (TCP) -might be unnecessary?
+    ansible.posix.firewalld:
+      port: 749/tcp
+      permanent: yes
+      state: enabled
+
+  - name: reload firewalld
+    service:
+      name: firewalld
+      state: restarted
+
+  # I don't know if this will work...
+  - name: open kdamin.local and add service principal
+    command: "{{ item }}"
+    with_items:
+      - kadmin.local
+      - addprinc name-of-principal
+    
+...
