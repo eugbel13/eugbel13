@@ -4,6 +4,9 @@
   collections:
   - ansible.posix
   become: true
+  vars:
+    kerb_key: "mmmm github link?"
+    sp_name: "maybe a variable in the host file..."
 
   vars_prompt:
     - name: ansible_user
@@ -40,8 +43,11 @@
     become: true
 
   - name: create kerberos database
-    command: kdb5_util create -s
-    # We need to input the argument for the password somehow
+    expect:
+      command: kdb5_util create -s
+      responses:
+        (?i)key: "{{ kerb_key }}"
+        (?i)verify: "{{ kerb_key }}"
 
   - name: start & enable 'kadmin'
     service:
@@ -73,7 +79,7 @@
       permanent: yes
       state: enabled
   
-  - name: opening kadmin port (TCP) -might be unnecessary?
+  - name: opening kadmin port (TCP) <-might be unnecessary?
     ansible.posix.firewalld:
       port: 749/tcp
       permanent: yes
@@ -89,6 +95,6 @@
     command: "{{ item }}"
     with_items:
       - kadmin.local
-      - addprinc name-of-principal
+      - addprinc {{ sp_name }}
     
 ...
