@@ -1,5 +1,5 @@
 ---
-- name: This is a quick test playbook. I use it to quickly test modules where necessary
+- name: This playbook will attempt to install Kerberos and prepare our service principal to auth on our domain
   hosts: txd1-confluence.extendhealth.com
   collections:
   - ansible.posix
