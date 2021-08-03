@@ -1,8 +1,6 @@
 ---
 - name: This is a quick test playbook. I use it to quickly test modules where necessary
-  hosts: txd1-confluence.extendhealth.com
-  collections:
-  - ansible.posix
+  hosts: txd3-confluence.extendhealth.com
   become: true
 
   vars_prompt:
@@ -21,15 +19,22 @@
 
   tasks:
   - name: literally just checking syntax
-    ansible.posix.firewalld:
-      port: 8090/tcp
-      permanent: yes
-      state: enabled
+    copy:
+      src: ../files/qa/config/krb5.conf
+      dest: /etc/krb5.conf
+    become: true
       
-  - name: reload firewalld
-    service:
-      name: firewalld
-      state: restarted
+  - name: copy server.xml
+    copy:
+      src: ../files/qa/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
+    become: true
+
+  - name: copy setenv.sh
+    copy:
+      src: ../files/qa/config/setenv.sh
+      dest: /opt/atlassian/confluence/bin/setenv.sh
+    become: true
     
 
 
