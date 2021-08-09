@@ -18,24 +18,11 @@
   
 
   tasks:
-  - name: literally just checking syntax
-    copy:
-      src: ../files/qa/config/krb5.conf
-      dest: /etc/krb5.conf
-    become: true
-      
   - name: copy server.xml
     copy:
       src: ../files/qa/config/server.xml
       dest: /opt/atlassian/confluence/conf/server.xml
     become: true
-
-  - name: copy setenv.sh
-    copy:
-      src: ../files/qa/config/setenv.sh
-      dest: /opt/atlassian/confluence/bin/setenv.sh
-    become: true
-    
 
 
 ...
