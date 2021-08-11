@@ -18,10 +18,10 @@
   
 
   tasks:
-  - name: copy krb5.conf file
+  - name: copy whatever.java file
     copy:
-      src: ../files/qa/config/krb5.conf
-      dest: /etc/krb5.conf
+      src: ../whatever.java
+      dest: /home/eugbel@extendhealth.com/whatever.java
     become: true
 
   # - name: copy user.sh
