@@ -18,10 +18,10 @@
   
 
   tasks:
-  - name: copy setenv.sh
+  - name: copy confluence.cfg.xml
     copy:
-      src: ../files/qa/config/setenv.sh
-      dest: /opt/atlassian/confluence/bin/setenv.sh
+      src: ../files/qa/config/confluence.cfg.xml
+      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
     become: true
 
   # - name: copy user.sh
