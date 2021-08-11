@@ -18,17 +18,17 @@
   
 
   tasks:
-  - name: copy server.xml
+  - name: copy setenv.sh
     copy:
-      src: ../files/qa/config/server.xml
-      dest: /opt/atlassian/confluence/conf/server.xml
+      src: ../files/qa/config/setenv.sh
+      dest: /opt/atlassian/confluence/bin/setenv.sh
     become: true
 
-  - name: copy user.sh
-    copy:
-      src: ../files/qa/config/user.sh
-      dest: /opt/atlassian/confluence/bin/user.sh
-    become: true
+  # - name: copy user.sh
+  #   copy:
+  #     src: ../files/qa/config/user.sh
+  #     dest: /opt/atlassian/confluence/bin/user.sh
+  #   become: true
 
 
 ...
