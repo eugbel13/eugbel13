@@ -18,10 +18,10 @@
   
 
   tasks:
-  - name: copy JDBC jar
+  - name: copy setenv.sh
     copy:
-      src: ../files/qa/config/mssql-jdbc-6.4.0.jre8.jar
-      dest: /opt/atlassian/confluence/confluence/WEB-INF/lib/mssql-jdbc-6.4.0.jre8.jar
+      src: ../files/qa/config/setenv.sh
+      dest: /opt/atlassian/confluence/bin/setenv.sh
     become: true
 
   # - name: copy user.sh
