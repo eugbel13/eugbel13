@@ -24,7 +24,7 @@
     <property name="hibernate.connection.datasource">java:comp/env/jdbc/confluence</property>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.connection.isolation">2</property>
-    <property name="hibernate.connection.url">jdbc:sqlserver://QASqlFci.extendhealth.com:1433;database=QAConfluence;integratedSecurity=true;sendStringParametersAsUnicode=false;authenticationScheme=JavaKerberos</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://QASqlFci.extendhealth.com:1433;database=QAConfluence;sendStringParametersAsUnicode=false;authenticationScheme=JavaKerberos</property>
     <property name="hibernate.database.lower_non_ascii_supported">true</property>
     <property name="hibernate.dialect">com.atlassian.confluence.impl.hibernate.dialect.SQLServerDialect</property>
     <property name="hibernate.setup">true</property>
