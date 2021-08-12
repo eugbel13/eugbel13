@@ -18,23 +18,11 @@
   
 
   tasks:
-  - name: copy confluence.cfg.xml
+  - name: copy krb5.conf file
     copy:
-      src: ../files/qa/config/confluence.cfg.xml
-      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
+      src: ../files/qa/config/krb5.conf
+      dest: /etc/krb5.conf
     become: true
-
-  - name: copy server.xml
-    copy:
-      src: ../files/qa/config/server.xml
-      dest: /opt/atlassian/confluence/conf/server.xml
-    become: true
-
-  # - name: copy user.sh
-  #   copy:
-  #     src: ../files/qa/config/user.sh
-  #     dest: /opt/atlassian/confluence/bin/user.sh
-  #   become: true
 
 
 ...
