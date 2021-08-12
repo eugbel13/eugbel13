@@ -72,8 +72,6 @@
                     <!-- Logging configuration for Confluence is specified in confluence/WEB-INF/classes/log4j.properties -->
 					<Resource 
 					name="jdbc/confluence" auth="Container" type="javax.sql.DataSource"
-					username="EXTENDHEALTH\svc-wjv-QACNFL"
-					password="sw7sAZUCrup=EWR3+u6uv?*hAH+d7Vuy"
 					driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 					url="jdbc:sqlserver://QASqlFci.extendhealth.com;databaseName=QAConfluence;domain=EXTENDHEALTH.COM;integratedSecurity=true;authenticationScheme=JavaKerberos"
                     maxTotal="100"
