@@ -18,10 +18,16 @@
   
 
   tasks:
-  - name: copy whatever.java file
+  - name: copy confluence.cfg.xml
     copy:
-      src: ../whatever.java
-      dest: /home/eugbel@extendhealth.com/whatever.java
+      src: ../files/qa/config/confluence.cfg.xml
+      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
+    become: true
+
+  - name: copy server.xml
+    copy:
+      src: ../files/qa/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
     become: true
 
   # - name: copy user.sh
