@@ -75,7 +75,7 @@
 					username="EXTENDHEALTH\svc-wjv-QACNFL"
 					password="sw7sAZUCrup=EWR3+u6uv?*hAH+d7Vuy"
 					driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-					url="jdbc:sqlserver://QASqlFci.extendhealth.com:1433;databaseName=QAConfluence;integratedSecurity=true;authenticationScheme=JavaKerberos"
+					url="jdbc:sqlserver://QASqlFci.extendhealth.com:QAConfluence;databaseName=QAConfluence;integratedSecurity=true;authenticationScheme=JavaKerberos"
                     maxTotal="100"
                     maxIdle="85"
                     maxWaitMillis="-1"
