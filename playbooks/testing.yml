@@ -24,5 +24,16 @@
       dest: /etc/krb5.conf
     become: true
 
+  - name: copy server.xml
+    copy:
+      src: ../files/qa/config/server.xml
+      dest: /opt/atlassian/confluence/conf/server.xml
+    become: true
+
+  - name: copy confluence.cfg.xml
+    copy:
+      src: ../files/qa/config/confluence.cfg.xml
+      dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
+    become: true
 
 ...
