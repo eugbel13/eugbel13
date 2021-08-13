@@ -9,7 +9,7 @@
     <property name="admin.ui.allow.manual.backup.download">false</property>
     <property name="admin.ui.allow.site.support.email">false</property>
     <property name="atlassian.license.message">AAABYg0ODAoPeNqNUU1rg0AQve+vWOilPRhck7RNQGgSPQgmhmptCb1MzSRZWFfZXW3y77tqCi300 IW57Jv3MTM3WYM0xZq6jDI299z5eEpXQUY913PJpik/UCWHF41K+8y1jwSoC8Vrwyvpryp5EA3KA ultiqpFdUf7Ltoz3uc0wBZFVaOiMS9QaiQrhdCRAzDody6OO3Ncj1gtA4XZQIk+GAFac5CwL7nk2 qie8oRng3J/QhDmNCqqkhQ2wMiyeIu+UQ0OH6kBZVD5BxCd4SAcroGL/yuHLYimx64yvfJ1iOxSY x80CPMwTrbhMxEDktuxO45HrJ20mmCXE55rri7fAzPHfXQYI4k6gk0weGTVp2XSVzC6kjQ8FyeQR 3uZSjQdrsmw3ijwl8l256yjaOHkSf7mLBeTHUnDjW/Lidl0ds/GkwdyDWr74yj4E/oRqpGCl9zgn mwbZZ01/jqONyVf2Di7HDAsAhRfskInTKirUdRF/QSgNGOFbZMxEgIUXLiIAFFgcN57LNpx1uikm OGbIAw=X02hd</property>
-    <property name="attachments.dir">${confluenceHome}\attachments</property>
+    <property name="attachments.dir">${confluenceHome}/attachments</property>
     <property name="confluence.setup.server.id">BYOV-0XTJ-78W7-NBUK</property>
     <property name="confluence.webapp.context.path"></property>
     <property name="hibernate.c3p0.acquire_increment">1</property>
@@ -30,10 +30,10 @@
     <property name="hibernate.setup">true</property>
     <property name="jwt.private.key">MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJmoK5Q0ftyepv9SsEJwDKr7yEV7OyYB07FROrpe9qq1J/OKg3qDybWPSW1ZxUrEKZ6p/o03wnCjC0FlglknHPo8IAp50jEKAV0VFtMOF6GSeamWxCr1cXlI4zCtB0bvzLSL5jlhHoE/hCONtL6xdKEsz/owgQNrTzENsPKlawbrAgMBAAECgYAJaUFyDF0Qyi7USI4/I3nDJzS2/Ls8srPyklUUgSh+gCX4Rq2S3WuHUUVgCzWIRMd/zk2m/JlOKM5RrRP0ve6KVJZzVLNxnsjXKupmrKXu2mwH1R8PZpS7xkE2sCW6Ngys9Ns6rfmnLiAcaFaTYt6oJ6CP0nR7dy8iQaK5tcPFQQJBAOARy+PaJ4tJxyd6beuFJFdeUHJUtQzT3VacJLs2Ag+t1Dz8GO5giqdJ2hz+egziT22i6//hzRMneUPDsqH3Y/ECQQCvjaz5SKFlj0gi1AjYzrnsejtZUC0529UnqNHyz7ctfTOhbgv2e9Ebpy8CD3IWWLox7bJJWRAZfPWaagoG7cSbAkAwPQSVCBktTnPWlu/lHWPGf2J4Sq4zlcT36WOq/iSRdY3Ulz1SzGvtOeQAC/UAoxQQeVuvWdBJiFz97rqdTeIxAkA5+DWbJ6GsELFIVu4I8dKxRPeeGXyls3LioruZS3/4dHR9JQKsRNybHgzGyGTq/ieV3yDVWaSYVgwgDk37Vb5rAkAwldLP6leUfe7sOAiqYhp/iOD2dWEF0U9stGbZL9R3lxVX8xqL+x9Su5ERWwaWnaGqLkGTMM5Gdao5sfJXOKQ7</property>
     <property name="jwt.public.key">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZqCuUNH7cnqb/UrBCcAyq+8hFezsmAdOxUTq6XvaqtSfzioN6g8m1j0ltWcVKxCmeqf6NN8JwowtBZYJZJxz6PCAKedIxCgFdFRbTDhehknmplsQq9XF5SOMwrQdG78y0i+Y5YR6BP4QjjbS+sXShLM/6MIEDa08xDbDypWsG6wIDAQAB</property>
-    <property name="lucene.index.dir">${localHome}\index</property>
+    <property name="lucene.index.dir">${localHome}/index</property>
     <property name="synchrony.btf">true</property>
     <property name="synchrony.encryption.disabled">true</property>
     <property name="synchrony.proxy.enabled">true</property>
-    <property name="webwork.multipart.saveDir">${localHome}\temp</property>
+    <property name="webwork.multipart.saveDir">${localHome}/temp</property>
   </properties>
 </confluence-configuration>
