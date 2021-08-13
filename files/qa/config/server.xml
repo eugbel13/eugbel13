@@ -73,7 +73,7 @@
 					<Resource 
 					name="jdbc/confluence" auth="Container" type="javax.sql.DataSource"
 					driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-					url="jdbc:sqlserver://QASqlFci.extendhealth.com;databaseName=QAConfluence;domain=EXTENDHEALTH.COM;integratedSecurity=true;authenticationScheme=JavaKerberos"
+					url="jdbc:sqlserver://QASqlFci.extendhealth.com;databaseName=QAConfluence;domain=EXTENDHEALTH.COM;integratedSecurity=true;authenticationScheme=JavaKerberos;userName=svc-wjv-QACNFL@EXTENDHEALTH.COM;password=sw7sAZUCrup=EWR3+u6uv?*hAH+d7Vuy"
                     maxTotal="100"
                     maxIdle="85"
                     maxWaitMillis="-1"
