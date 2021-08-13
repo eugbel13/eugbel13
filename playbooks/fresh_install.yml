@@ -101,6 +101,12 @@
       permanent: yes
       state: enabled
 
+  - name: permit traffic in default zone on port 8091/tcp for synchrony
+    ansible.posix.firewalld:
+      port: 8091/tcp
+      permanent: yes
+      state: enabled
+
   - name: permit traffic in default zone on port 1433/tcp for the database connection
     ansible.posix.firewalld:
       port: 1433/tcp

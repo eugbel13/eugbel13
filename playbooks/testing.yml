@@ -36,4 +36,15 @@
       dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
     become: true
 
+  - name: permit traffic in default zone on port 8091/tcp for synchrony
+    ansible.posix.firewalld:
+      port: 8091/tcp
+      permanent: yes
+      state: enabled
+
+  - name: reload firewalld
+    service:
+      name: firewalld
+      state: restarted
+
 ...
