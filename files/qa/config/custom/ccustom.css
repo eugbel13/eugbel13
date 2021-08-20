@@ -1,0 +1,197 @@
+@media print {
+.issue-view
+{ overflow-y: visible !important; }
+
+}
+
+.aui-message::after {top:unset !important;}
+.aui-navgroup-vertical .aui-nav>li>a, .aui-nav-vertical>li>a{border-radius: unset !important;}
+.sp-macro-verticalNav .aui-page-panel-nav {background:unset;}
+
+#beforeHeadEnd, #afterBodyStart, #beforeBodyEnd{height:350px !important;}
+
+
+/* Do Not Delete Banner css */
+#announcement-banner{
+   padding:unset !important;
+}
+
+.ban-size{
+    line-height:15px;
+    padding: 5px;
+    text-align:center;
+}
+
+.warn-me{
+   background-color:#fcf8e3;
+   color: #8a6d3b;
+}
+
+.info-me{
+    background-color:#d9edf7;
+    color:#31708f;
+   }
+.success-me{
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+.err-me{
+    background-color:#f2dede;
+    color:#a94442;
+}
+
+#ban-close {
+    float:right;
+    display:inline-block;
+    top:-2px;
+    right:5px;
+    position:relative;
+    font-size: 16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* Slider code begins */
+
+#BannerBG {
+    width: 98.5%;
+    overflow: hidden;
+}
+
+.sli-con {
+    padding: 15px 0 0 15px;
+    overflow: hidden;
+    height:20vw;
+
+}
+
+
+.slide-container .prev,
+.slide-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.slide-container .prev:hover,
+.slide-container .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    opacity: 1;
+}
+
+.slide-container .prev {
+    opacity: 0;
+    left: 2px;
+}
+
+.slide-container .next {
+    opacity: 0;
+    right: 2px;
+}
+
+.dots {
+    background-color: #555555;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.dots-container {
+    align-items: center;
+    display: flex;
+    float: left;
+    height: 35px;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.dots-container .dot {
+    cursor: pointer;
+    margin: 0 3px;
+    width: .9vw;
+    height: .9vw;
+    color: #333;
+    border-radius: 50%;
+    background-color: #dfd6ce;
+}
+
+.dots-container .dot.active {
+    border: 2px solid green;
+    background-color: #777777;
+}
+
+.sli-con *, .dots * {
+    border: 0;
+    box-sizing: border-box;
+}
+
+.slide-container {
+    align-items: center;
+    float: left;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 75%;
+}
+
+.mcap {
+    float: left;
+    color: #005500;
+    padding: 0 25px;
+    font-size: 2.8vw;
+    width: 25%;
+    font-family: minion pro;
+    text-align: center;
+    height: 300px;
+}
+
+.mcap span {
+    margin: auto;
+}
+
+.slide-container .slide.fade {
+    animation: fade 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+.slide-container .slide img {
+    width: 100%;
+    height:19vw;
+}
+
+.slide-container .slide {
+    display: none;
+    width: 100%;
+}
+
+/* Code for Coolbutton */
+
+.dccbutton a{
+    border-radius:15px;
+    display:inline-block;
+    cursor:pointer;
+    padding:7px 10px;
+    text-decoration:none;
+    margin-top:5px;
+}
+
+.dccbutton a:active {
+    top:1px;
+    opacity: .5;
+    overflow:hidden;
+}
+
+/* fix for section macro */
+.sectionMacro{
+    width:99% !important;
+}

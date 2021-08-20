@@ -6,7 +6,7 @@
   collections:
   - ansible.posix
   vars:
-    confl_bin: atlassian-confluence-7.10.2-x64.bin
+    confl_bin: atlassian-confluence-7.4.6-x64.bin
     confl_url: https://www.atlassian.com/software/confluence/downloads/binary/{{confl_bin}}
 
   vars_prompt:
@@ -47,50 +47,56 @@
 
   - name: copy user.sh
     copy:
-      src: ../files/qa/config/user.sh
+      src: ../files/{{envir}}/config/user.sh
       dest: /opt/atlassian/confluence/bin/user.sh
     become: true
 
   - name: copy server.xml
     copy:
-      src: ../files/qa/config/server.xml
+      src: ../files/{{envir}}/config/server.xml
       dest: /opt/atlassian/confluence/conf/server.xml
-    become: true
-
-  - name: copy web.xml
-    copy:
-      src: ../files/qa/config/web.xml
-      dest: /opt/atlassian/confluence/confluence/WEB-INF/web.xml
     become: true
 
   - name: copy confluence.cfg.xml
     copy:
-      src: ../files/qa/config/confluence.cfg.xml
+      src: ../files/{{envir}}/config/confluence.cfg.xml
       dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
     become: true
 
   - name: copy setenv.sh
     copy:
-      src: ../files/qa/config/setenv.sh
+      src: ../files/{{envir}}/config/setenv.sh
       dest: /opt/atlassian/confluence/bin/setenv.sh
     become: true
-
-  - name: copy sqljdbc_auth.dll
+  
+  - name: copy krb5.conf file
     copy:
-      src: ../files/qa/config/sqljdbc_auth.dll
-      dest: /lib/sqljdbc_auth.dll
+      src: ../files/common/krb5.conf
+      dest: /etc/krb5.conf
+    become: true
+
+  - name: remove bundled JDBC driver "mssql-jdbc-6.3.0.jre8-preview.jar"
+    file:
+      path: /opt/atlassian/confluence/confluence/WEB-INF/mssql-jdbc-6.3.0.jre8-preview.jar
+      state: absent
+    become: true
+
+  - name: copy JDBC Driver .jar file "mssql-jdbc-7.4.1.jre8.jar"
+    copy:
+        src: ../files/{{envir}}/config/mssql-jdbc-7.4.1.jre8.jar
+        dest: /opt/atlassian/confluence/confluence/WEB-INF/mssql-jdbc-7.4.1.jre8.jar
     become: true
 
   - name: set home directory permissions
     file: 
-      path: /opt/atlassian/confluence/
+      path: /opt/atlassian/
       state: directory
       recurse: yes
       owner: svc-wjv-QACNFL
   
   - name: set installation directory permissions
     file: 
-      path: /var/atlassian/application-data/confluence/
+      path: /var/atlassian/
       state: directory
       recurse: yes
       owner: svc-wjv-QACNFL
@@ -117,3 +123,8 @@
     service:
       name: firewalld
       state: restarted
+
+  - name: start confluence service
+    service:
+      name: confluence
+      state: started

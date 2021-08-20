@@ -3,7 +3,7 @@
 <confluence-configuration>
   <setupStep>complete</setupStep>
   <setupType>custom</setupType>
-  <buildNumber>8506</buildNumber>
+  <buildNumber>8402</buildNumber>
   <properties>
     <property name="admin.ui.allow.daily.backup.custom.location">false</property>
     <property name="admin.ui.allow.manual.backup.download">false</property>
@@ -24,7 +24,9 @@
     <property name="hibernate.connection.datasource">java:comp/env/jdbc/confluence</property>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.connection.isolation">2</property>
-    <property name="hibernate.connection.url">jdbc:sqlserver://QASqlFci.extendhealth.com;databaseName=QAConfluence;domain=EXTENDHEALTH.COM;integratedSecurity=true;authenticationScheme=JavaKerberos;userName=svc-wjv-QACNFL@EXTENDHEALTH.COM;password=sw7sAZUCrup=EWR3+u6uv?*hAH+d7Vuy</property>
+    <property name="hibernate.connection.username">svc-wjv-QACNFL</property>
+    <property name="hibernate.connection.password">sw7sAZUCrup=EWR3+u6uv?*hAH+d7Vuy</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://QASqlFci.extendhealth.com:1433;database=QAConfluence;integratedsecurity=true;authenticationScheme=JavaKerberos;realm=EXTENDHEALTH.COM</property>
     <property name="hibernate.database.lower_non_ascii_supported">true</property>
     <property name="hibernate.dialect">com.atlassian.confluence.impl.hibernate.dialect.SQLServerDialect</property>
     <property name="hibernate.setup">true</property>
