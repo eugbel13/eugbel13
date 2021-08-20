@@ -18,17 +18,17 @@
   
 
   tasks:
-  - name: copy krb5.conf file
-    copy:
-      src: ../files/qa/config/krb5.conf
-      dest: /etc/krb5.conf
-    become: true
+  # - name: copy krb5.conf file
+  #   copy:
+  #     src: ../files/qa/config/krb5.conf
+  #     dest: /etc/krb5.conf
+  #   become: true
 
-  - name: copy server.xml
-    copy:
-      src: ../files/qa/config/server.xml
-      dest: /opt/atlassian/confluence/conf/server.xml
-    become: true
+  # - name: copy server.xml
+  #   copy:
+  #     src: ../files/qa/config/server.xml
+  #     dest: /opt/atlassian/confluence/conf/server.xml
+  #   become: true
 
   - name: copy confluence.cfg.xml
     copy:
@@ -36,15 +36,15 @@
       dest: /var/atlassian/application-data/confluence/confluence.cfg.xml
     become: true
 
-  - name: permit traffic in default zone on port 8091/tcp for synchrony
-    ansible.posix.firewalld:
-      port: 8091/tcp
-      permanent: yes
-      state: enabled
+  # - name: permit traffic in default zone on port 8091/tcp for synchrony
+  #   ansible.posix.firewalld:
+  #     port: 8091/tcp
+  #     permanent: yes
+  #     state: enabled
 
-  - name: reload firewalld
-    service:
-      name: firewalld
-      state: restarted
+  # - name: reload firewalld
+  #   service:
+  #     name: firewalld
+  #     state: restarted
 
 ...
