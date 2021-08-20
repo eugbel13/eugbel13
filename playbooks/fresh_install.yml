@@ -77,7 +77,7 @@
 
   - name: remove bundled JDBC driver "mssql-jdbc-6.3.0.jre8-preview.jar"
     file:
-      path: /opt/atlassian/confluence/confluence/WEB-INF/mssql-jdbc-6.3.0.jre8-preview.jar
+      path: /opt/atlassian/confluence/confluence/WEB-INF/lib/mssql-jdbc-6.3.0.jre8-preview.jar
       state: absent
     become: true
 
