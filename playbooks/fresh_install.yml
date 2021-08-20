@@ -84,7 +84,7 @@
   - name: copy JDBC Driver .jar file "mssql-jdbc-7.4.1.jre8.jar"
     copy:
         src: ../files/{{envir}}/config/mssql-jdbc-7.4.1.jre8.jar
-        dest: /opt/atlassian/confluence/confluence/WEB-INF/mssql-jdbc-7.4.1.jre8.jar
+        dest: /opt/atlassian/confluence/confluence/WEB-INF/lib/mssql-jdbc-7.4.1.jre8.jar
     become: true
 
   - name: set home directory permissions
