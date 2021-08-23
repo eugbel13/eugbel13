@@ -124,7 +124,7 @@
       name: firewalld
       state: restarted
 
-  - name: start confluence service
-    service:
-      name: confluence
-      state: started
+  # - name: start confluence service
+  #   service:
+  #     name: confluence
+  #     state: started
